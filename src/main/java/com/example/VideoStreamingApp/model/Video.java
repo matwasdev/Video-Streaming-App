@@ -20,19 +20,25 @@ public class Video {
     @Id
     private int Id;
 
+    @Column
+    private String title;
+
+    @Column
+    private String description;
+
+    @Column(nullable = false)
+    private String path;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",nullable = false)
     private MyUser myUser;
 
     @ManyToMany(mappedBy = "savedVideos")
     private Set<MyUser> usersWhoSaved = new HashSet<MyUser>();
 
+
     @Column
     private LocalDateTime createdAt;
-
-    public Video() {
-        this.createdAt = LocalDateTime.now();
-    }
 
 
 }
